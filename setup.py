@@ -46,7 +46,7 @@ def parse_version(module_file):
 f = open("README.txt")
 kingman_readme = f.read()
 f.close()
-kingman_version = parse_version("kingman/__init__.py")
+kingman_version = parse_version("kingman.py")
 
 setup(
     name="kingman",
