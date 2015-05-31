@@ -22,7 +22,7 @@ An example Python package, illustrating current best-practises.
 from __future__ import print_function
 from __future__ import division
 
-__version__ = '1.0.0'
+__version__ = '1.0.0a1'
 
 
 def simulate(sample_size, random_seed):
