@@ -46,7 +46,7 @@ def parse_version(module_file):
 f = open("README.txt")
 kingman_readme = f.read()
 f.close()
-kingman_version = parse_version("kingman.py")
+kingman_version = parse_version("kingman/__init__.py")
 
 setup(
     name="kingman",
@@ -59,7 +59,7 @@ setup(
     url="http://pypi.python.org/pypi/kingman",
     entry_points={
         'console_scripts': [
-            'kingman=kingman:main',
+            'kingman=kingman.cli:main',
         ]
     },
     install_requires=[],

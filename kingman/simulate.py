@@ -17,11 +17,15 @@
 # along with kingman.  If not, see <http://www.gnu.org/licenses/>.
 #
 """
-An example Python package, illustrating current best-practises.
+Simulation code for the kingman module.
 """
 from __future__ import print_function
 from __future__ import division
 
-__version__ = '1.0.0a1'
 
-from kingman.simulate import *
+def simulate(sample_size, random_seed):
+    """
+    Simulates the Kingman coalescent for the specified sample size
+    and random seed.
+    """
+    return [], []

@@ -17,11 +17,11 @@
 # along with kingman.  If not, see <http://www.gnu.org/licenses/>.
 #
 """
-An example Python package, illustrating current best-practises.
+The command line interface for the kingman package.
 """
 from __future__ import print_function
 from __future__ import division
 
-__version__ = '1.0.0a1'
 
-from kingman.simulate import *
+def main():
+    print("main")
