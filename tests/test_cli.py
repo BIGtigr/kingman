@@ -25,7 +25,27 @@ from __future__ import division
 
 import unittest
 
+import kingman.cli as cli
+
+
 class TestCli(unittest.TestCase):
     """
     Test cases for the command line interface for kingman.
     """
+
+    def test_sample_size(self):
+        parser = cli.get_parser()
+        for sample_size in ["2", "10", "100"]:
+            args = parser.parse_args([sample_size])
+            self.assertEqual(args.sample_size, int(sample_size))
+            # random seed is not specified, so should be None
+            self.assertEqual(args.random_seed, None)
+
+    def test_random_seed(self):
+        parser = cli.get_parser()
+        args = parser.parse_args(["2", "--random-seed=10"])
+        self.assertEqual(args.sample_size, 2)
+        self.assertEqual(args.random_seed, 10)
+        args = parser.parse_args(["2", "-s", "100"])
+        self.assertEqual(args.sample_size, 2)
+        self.assertEqual(args.random_seed, 100)

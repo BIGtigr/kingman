@@ -23,5 +23,35 @@ from __future__ import print_function
 from __future__ import division
 
 
+import argparse
+
+import kingman
+
+
+def get_parser():
+    """
+    Returns an argparse based command line argument parser for
+    the kingman program.
+    """
+    description = (
+        "A simple command line interface for the Kingman simulator. "
+        "Outputs a simulate coalescent history in the form of an "
+        "oriented forest in JSON format."
+    )
+    parser = argparse.ArgumentParser(description=description)
+    parser.add_argument("sample_size", type=int, help="Sample size")
+    parser.add_argument(
+        "-s", "--random-seed", type=int, help="Random seed",
+        default=None)
+    return parser
+
+
 def main():
-    print("main")
+   parser = get_parser()
+   args = parser.parse_args()
+   if args.sample_size < 2:
+       parser.error("Sample size must be >= 2")
+
+
+
+
