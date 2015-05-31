@@ -17,20 +17,21 @@
 # along with kingman.  If not, see <http://www.gnu.org/licenses/>.
 #
 """
-Unit tests for the kingman package. These are intended to be run
-using nose.
+Unit tests for the cli module.
 """
 from __future__ import print_function
 from __future__ import division
 
+import json
 import unittest
+import tempfile
 
 import kingman.cli as cli
 
 
-class TestCli(unittest.TestCase):
+class TestInput(unittest.TestCase):
     """
-    Test cases for the command line interface for kingman.
+    Test cases for the command line interface input for kingman.
     """
 
     def test_sample_size(self):
@@ -49,3 +50,24 @@ class TestCli(unittest.TestCase):
         args = parser.parse_args(["2", "-s", "100"])
         self.assertEqual(args.sample_size, 2)
         self.assertEqual(args.random_seed, 100)
+
+
+class TestOutput(unittest.TestCase):
+    """
+    Test cases for the command line interface output for kingman
+    """
+
+    def verify_json_outout(self, sample_size, json_dict):
+        self.assertEqual(len(json_dict), 2)
+        parent = json_dict["parent"]
+        time = json_dict["time"]
+        self.assertEqual(len(parent), 2 * sample_size - 1)
+        self.assertEqual(len(time), 2 * sample_size - 1)
+
+    def test_sample_size(self):
+        for sample_size in [2, 5, 10]:
+            with tempfile.TemporaryFile("w+") as f:
+                cli.run_simulation(sample_size, None, f)
+                f.seek(0)
+                result = json.load(f)
+                self.verify_json_outout(sample_size, result)

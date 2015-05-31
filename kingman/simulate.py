@@ -22,10 +22,32 @@ Simulation code for the kingman module.
 from __future__ import print_function
 from __future__ import division
 
+import random
 
-def simulate(sample_size, random_seed):
+
+def simulate(sample_size, random_seed=None):
     """
     Simulates the Kingman coalescent for the specified sample size
     and random seed.
     """
-    return [], []
+    if sample_size < 2:
+        raise ValueError("sample_size must be >= 2")
+    random.seed(random_seed)
+    time = [0 for j in range(2 * sample_size)]
+    parent = [0 for j in range(2 * sample_size)]
+    # Following Knuth, we make the zeroth element -1.
+    time[0] = -1
+    parent[0] = -1
+    ancestors = list(range(1, sample_size + 1))
+    t = 0
+    next_node = sample_size + 1
+    for n in range(sample_size, 1, -1):
+        t += random.expovariate(n * (n - 1))
+        for _ in range(2):
+            child = random.choice(ancestors)
+            parent[child] = next_node
+            ancestors.remove(child)
+        ancestors.append(next_node)
+        time[next_node] = t
+        next_node += 1
+    return parent, time

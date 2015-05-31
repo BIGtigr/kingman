@@ -22,8 +22,9 @@ The command line interface for the kingman package.
 from __future__ import print_function
 from __future__ import division
 
-
 import argparse
+import json
+import sys
 
 import kingman
 
@@ -46,12 +47,22 @@ def get_parser():
     return parser
 
 
+def run_simulation(sample_size, random_seed, output):
+    """
+    Runs the simulation for the specified sample_size and random
+    seed, writing out oriented forest output to the specified file
+    in JSON format.
+    """
+    parent, time = kingman.simulate(sample_size, random_seed)
+    d = {"parent": parent[1:], "time": time[1:]}
+    json.dump(d, output)
+    # Write a trailing newline.
+    print(file=output)
+
+
 def main():
-   parser = get_parser()
-   args = parser.parse_args()
-   if args.sample_size < 2:
-       parser.error("Sample size must be >= 2")
-
-
-
-
+    parser = get_parser()
+    args = parser.parse_args()
+    if args.sample_size < 2:
+        parser.error("Sample size must be >= 2")
+    run_simulation(args.sample_size, args.random_seed, sys.stdout)
