@@ -25,4 +25,4 @@ from __future__ import division
 __version__ = '1.0.0a1'
 
 # Import the functions here that we export in our public interface
-from kingman.simulate import *  # NOQA
+from kingman.simulator import simulate  # NOQA
