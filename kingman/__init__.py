@@ -22,7 +22,7 @@ An example Python package, illustrating current best-practises.
 from __future__ import print_function
 from __future__ import division
 
-__version__ = '1.0.0a1'
+__version__ = '1.0.0'
 
 # Import the functions here that we export in our public interface
 from kingman.simulator import simulate  # NOQA
