@@ -7,4 +7,5 @@ best practices in Python development and packaging.  The intended audience is
 for Bioinformatics, so the package itself simulates a Kingman's coalescent, a
 simple but fundamental process in population genetics. See the `CodeMonkeys
 blog post <http://wtchgcodemonkeys.github.io/Packaging_Python/>`_ for a full
-discussion of this package.
+discussion of this package. Documentation for the package is available
+on `ReadTheDocs <http://kingman.readthedocs.org/en/latest/>`_.
