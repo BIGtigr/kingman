@@ -8,7 +8,7 @@ Welcome to Kingman's documentation!
 
 This is the documentation for the ``kingman`` package. This package is
 a simple example of how to put together a Python package, using
-current best practises. See the `WTCHG CodeMonkey's post
+current best practises. See the `WTCHG CodeMonkeys post
 <http://wtchgcodemonkeys.github.io/Packaging_Python/>`_ for more
 details.
 
