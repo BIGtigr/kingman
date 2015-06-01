@@ -36,8 +36,9 @@ def get_parser():
     """
     description = (
         "A simple command line interface for the Kingman simulator. "
-        "Outputs a simulate coalescent history in the form of an "
-        "oriented forest in JSON format."
+        "Outputs a simulated coalescent history in the form of an "
+        "oriented forest in JSON format. Time is measured in units"
+        "of 4Ne."
     )
     parser = argparse.ArgumentParser(description=description)
     parser.add_argument("sample_size", type=int, help="Sample size")
