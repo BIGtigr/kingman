@@ -1,6 +1,7 @@
 language: python
 python:
   - "2.7"
+  - "3.2"
   - "3.3"
   - "3.4"
 
@@ -12,4 +13,6 @@ script:
   - flake8 *.py kingman tests --exclude=ez_setup.py
   - nosetests --with-coverage --cover-package kingman
               --cover-inclusive --cover-min-percentage 85
-  - make -C docs html
+  # Check that our docs build, but don't run for Python 3.2 as 
+  # sphinx doesn't support it.
+  - if [[ $TRAVIS_PYTHON_VERSION != 3.2* ]]; then make -C docs; fi
