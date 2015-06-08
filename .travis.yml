@@ -15,4 +15,4 @@ script:
               --cover-inclusive --cover-min-percentage 85
   # Check that our docs build, but don't run for Python 3.2 as 
   # sphinx doesn't support it.
-  - if [[ $TRAVIS_PYTHON_VERSION != 3.2* ]]; then make -C docs; fi
+  - if [[ $TRAVIS_PYTHON_VERSION != 3.2* ]]; then make -C docs html; fi
